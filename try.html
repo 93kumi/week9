@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-pink-300 flex items-center justify-center min-h-screen">
+<div class="bg-purple-400 rounded-lg shadow p-4 w-full max-w-lg">
+    <h1 class="font-bold text-white text-xl text-center underline">
+        ユーザー登録しちゃお💕
+    </h1>
+
+    <form id ="signupForm" class="space-y-4" novalidate>
+        
+        <div>
+        <label for="name" class="block text-sm font-medium text-white mb-1 ">
+            お名前をいれてね
+        </label>
+        <input type ="text"
+                id="name"
+                required
+                class="w-full border rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500"
+                placeholder="けろけろけろっぴ">
+
+    <label for="email" class="block text-sm font-medium text-white mb-1">
+        e-mailを頂戴な
+    </label>
+    <input type ="email"
+            id  ="email"
+            required
+            class="w-full border rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500"
+            placeholder="kerokero.gmail.com">
+
+    <label for="password" class="block text-sm font-meduim text-white mb-1">
+    パスワードは自分で決めてね
+            </label>
+            <input type="password"
+                    id ="password"
+                    required
+                    minlength="10"
+                    class="w-full rounded-full border focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    placeholder="password10文字以上だよ">
+
+    <div class="flex-center gap-2">
+    <input type="checkbox" id="agree">
+            <label for="agree" class="text-sm text-white">
+                規約に同意する
+            </label>
+        </div>
+
+        <p id="message" class="text-sm font-medium"></p>
+
+        <button type ="submit"
+        class="w-full bg-pink-400 text-white font-bold  rounded-full hover:bg-pink-800">
+    登録
+    </button>
+
+    <script>
+        const form = document.getElementById("signupForm")
+        const message = document.getElementById("message")
+
+        form.addEventListener("submit",(event) => {
+            event.preventDefault();
+        
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+            const agree = document.getElementById("agree").checked;
+        
+            if (name ===""){
+                message.textContent = "お名前を入力してね✨";
+                message.className ="text-pink-500 font-medium text-sm";
+                return;
+            }
+
+            if (email ===""){
+                message.textContent = "e-mailがないと登録できないよ😢";
+                message.className = "text-pink-500 font-medium text-sm";
+                return;
+            }
+
+            if(password.length < 10){
+            message.textContent ="パスワードは10文字入力必須だよ😊";
+            message.className = "font-medium text-pink-500 text-sm";
+            return;
+            }
+
+            if(!agree){
+            message.textContent="同意しないと進ませないよ";
+            message.className="text-sm font-medium text-pink-500";
+            return;
+            }
+        
+            message.textContent ="登録完了!Welcome to our Wonderland"+ name +"さん！"
+            message.className ="text-sm font-bold text-yellow-500"
+    
+        });
+    </script>
+</form>
+</div>
+</body>
+</html>
